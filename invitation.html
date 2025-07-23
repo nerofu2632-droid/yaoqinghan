@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>升学宴邀请函</title>
+    <style>
+        body {
+            font-family: 'Arial', 'KaiTi', 'SimSun', serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('photo1.jpg'); /* 初始显示第一张图片 */
+            background-size: contain; /* 保持原始比例，不拉伸 */
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: fadeBackground 20s infinite; /* 延长时长以平缓淡化 */
+            z-index: -1; /* 置于底层 */
+        }
+        @keyframes fadeBackground {
+            0% { opacity: 1; background-image: url('photo1.jpg'); }
+            40% { opacity: 0; } /* 缓慢淡出 */
+            50% { opacity: 1; background-image: url('photo2.jpg'); } /* 直接显示第二张 */
+            90% { opacity: 0; } /* 缓慢淡出 */
+            100% { opacity: 1; background-image: url('photo1.jpg'); } /* 直接返回第一张 */
+        }
+        .invitation {
+            width: 90%;
+            max-width: 450px;
+            height: 700px;
+            background: rgba(255, 255, 255, 0.7); /* 半透明背景保持内容可见 */
+            border: 2px solid #d32f2f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+            z-index: 1; /* 置于前景 */
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .title { 
+            font-size: 60px;
+            color: #d32f2f; 
+            font-weight: bold; 
+            margin-bottom: 30px; 
+        }
+        .title span { 
+            /* 无白色方框 */
+        }
+        .content { 
+            font-size: 24px;
+            color: #333; 
+            line-height: 1.8; 
+            text-align: left; 
+            margin-left: 40px; 
+            margin-top: 20px; 
+        }
+        .highlight { 
+            color: #d32f2f; 
+            font-weight: bold; 
+        }
+        .nav-button {
+            position: absolute;
+            bottom: 20px;
+            width: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 25px;
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(45deg, #d32f2f, #f9a825);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .nav-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            background: linear-gradient(45deg, #f9a825, #d32f2f);
+        }
+        @media (max-width: 480px) {
+            .invitation { 
+                width: 95%; 
+                height: 700px; 
+                padding: 10px; 
+            }
+            .title { 
+                font-size: 50px; 
+            }
+            .content { 
+                font-size: 20px; 
+                margin-left: 30px; 
+            }
+            .nav-button {
+                font-size: 18px;
+                padding: 10px 20px;
+                bottom: 15px;
+            }
+        }
+    </style>
+    <script>
+        function navigate() {
+            // 高德地图导航链接，目标为“圣德分店”
+            var amapUrl = 'amapuri://route/plan/?dname=圣德分店&dev=0&t=0';
+            // 百度地图导航链接，目标为“圣德分店”
+            var baiduUrl = 'baidumap://map/direction?destination=圣德分店&mode=driving';
+
+            // 尝试打开高德地图
+            window.location.href = amapUrl;
+
+            // 设置延迟检测，若 500ms 内未跳转，切换到百度地图
+            setTimeout(function() {
+                if (document.hidden || window.location.href === amapUrl) {
+                    window.location.href = baiduUrl;
+                }
+            }, 500);
+        }
+    </script>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="invitation">
+        <div class="title"><span>升学宴</span></div>
+        <div class="content">
+            十余载寒窗不负，一生福禄亦可期<br>
+            亲爱的各位亲朋好友：<br>
+            谨定于<br>
+            <span class="highlight">2025年7月6日 星期三 18:30</span><br>
+            农历六月初十二 星期三<br>
+            地点：<span class="highlight">圣德分店</span><br>
+            举办升学宴，望亲朋莅临见证
+        </div>
+        <a href="javascript:void(0)" class="nav-button" onclick="navigate()">导航</a>
+    </div>
+</body>
+</html>
